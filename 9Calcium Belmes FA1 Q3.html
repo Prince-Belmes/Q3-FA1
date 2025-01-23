@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JavaScript Operators </title>
+		<meta charset="UTF-8">
+		<meta name="author" content="Prince Jayrick E. Belmes">
+	</head>
+	<body>
+		<input id="studentName" placeholder="Student Name"></input>
+		<br>
+		<input id="acAvrg" placeholder="Academic Average"></input>
+		<br>
+		<input id="xtraCuricGrade" placeholder="Extra-Curricular Grade"></input>
+		<br>
+		<input id="failedSubs" placeholder="Number of Failed Subjects"></input>
+		<br>
+		<button onclick="scholarship()"> Check Eligibility </button>
+		<h2 id="message"> Message Here </h2>
+		
+		<script>
+			function scholarship() {
+			let name = document.getElementById("studentName").value;
+			let average = parseFloat(document.getElementById("acAvrg").value);
+			let grade = parseFloat(document.getElementById("xtraCuricGrade").value);
+			let failedsubs = parseInt(document.getElementById("failedSubs").value);
+			let message = "";
+
+
+			if (average < 0 || average > 100) {
+				alert("Error! Academic Average must be between 0 and 100.");
+				return;
+			}
+
+			if (grade < 0 || grade > 100) {
+				alert("Error! Extra-Curricular Grade must be between 0 and 100.");
+				return;
+			}
+
+			if (failedsubs < 0) {
+				alert("Error! Failed Subjects must be a positive number.");
+				return;
+			}
+
+
+			if (average >= 85 && grade >= 80 && failedsubs === 0) {
+				message = `Congratulations, ${name}! You qualify for the scholarship.`;
+			} else {
+				message = `Sorry, ${name}. You do not qualify for the scholarship. `;
+
+				if (average < 85) {
+					message += "Improve your Academic Average. ";
+				}
+
+				if (grade < 80) {
+					message += "Improve your Extra-Curricular Grade. ";
+				}
+
+				if (failedsubs > 0) {
+					message += "Reduce your Failed Subjects.";
+				}
+			}
+
+			document.getElementById("message").innerHTML = message;
+		
+		}
+		</script>
+	</body>
+</html>
